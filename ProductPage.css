@@ -8,3 +8,7 @@
     text-align: center;
   }
   
+  #backToFrontPage {
+    display: block;
+    margin: 20px auto;
+}

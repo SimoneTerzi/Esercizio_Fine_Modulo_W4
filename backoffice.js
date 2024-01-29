@@ -95,7 +95,6 @@ async function createModal(productId) {
 }
 
 
-
 document.addEventListener("DOMContentLoaded", () => {
   displayProducts();
 });
