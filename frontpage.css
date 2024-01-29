@@ -1,0 +1,9 @@
+.img-fluid {
+  width: 200px;
+  height: 100px;
+ object-fit: contain;
+}
+
+h1 {
+  text-align: center;
+}

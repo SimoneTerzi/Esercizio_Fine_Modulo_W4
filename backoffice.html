@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Backoffice</title>
+    <link rel="stylesheet" href="backoffice.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+
+</head>
+
+<body>
+    <h1>Backoffice</h1><br>
+
+
+    <div class="upLoadProduct">
+        <h4>Aggiungi Prodotto</h4>
+
+        Nome del Prodotto: <br>
+        <input type="text" id="productName" name="productName"><br>
+
+        Descrizione del Prodotto: <br>
+        <textarea id="productDescription" name="productDescription"></textarea><br>
+
+        Marca del Prodotto: <br>
+        <input type="text" id="productBrand" name="productBrand"><br>
+
+        Prezzo del Prodotto: <br>
+        <input type="number" id="productPrice" name="productPrice"><br>
+
+        URL dell'immagine del Prodotto: <br>
+        <input type="text" id="productImageUrl" name="productImageUrl"><br><br>
+
+        <button type="button" id="addProductButton">Aggiungi Prodotto</button>
+        
+    </div>
+
+
+
+    <div id="productContainer" class="product-container d-flex flex-column-reverse"></div>
+
+    <div class="modalContainer">
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL"
+        crossorigin="anonymous"></script>
+    <script type="module" src="./backoffice.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,23 @@
+.remove-product:hover {
+  background-color: #cc0000;
+}
+
+.img-fluid {
+  width: 200px;
+  height: 100px;
+  object-fit: contain;
+}
+
+h1 {
+  text-align: center;
+}
+
+.upLoadProduct {
+  height: auto;
+  text-align: center;
+  
+}
+
+#productDescription{
+  
+}

@@ -1,0 +1,6 @@
+1-creare funzione che parte al click di confirm
+2-passare la funzione tutti i valori imput come parametro
+3-dentro la funzione creare variabile con nome product
+4-salvare dentro Product le proprietà es"let product = {name:...,descriptio;...ecc}"
+5-far partire la fetch con il PUT dando product come parametro
+6-Far partire displayProduct()
