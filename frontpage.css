@@ -7,3 +7,8 @@
 h1 {
   text-align: center;
 }
+
+#goToBackoffice {
+  display: block;
+  margin: 20px auto;
+}

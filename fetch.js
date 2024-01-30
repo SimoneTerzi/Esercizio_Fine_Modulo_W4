@@ -85,3 +85,27 @@ export async function getProductById(productId) {
     alert("Error fetching product details. Please try again later.");
   }
 }
+
+export async function updateProduct(productId, updatedProduct) {
+  try {
+    const response = await fetch(`${url}/${productId}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${token}`,
+      },
+      body: JSON.stringify(updatedProduct),
+    });
+
+    if (!response.ok) {
+      throw new Error(`HTTP error! Status: ${response.status}`);
+    }
+
+    console.log("Product updated successfully!");
+  } catch (error) {
+    console.error("An error occurred while updating the product:", error);
+    alert(
+      "An error occurred while updating the product. Please try again later."
+    );
+  }
+}

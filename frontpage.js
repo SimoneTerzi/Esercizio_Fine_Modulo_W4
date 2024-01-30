@@ -41,3 +41,9 @@ document
       handleViewProductClick(productId);
     }
   });
+
+document
+  .getElementById("goToBackoffice")
+  .addEventListener("click", function () {
+    window.location.href = "backoffice.html";
+  });

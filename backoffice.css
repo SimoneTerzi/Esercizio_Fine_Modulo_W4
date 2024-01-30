@@ -18,6 +18,7 @@ h1 {
   
 }
 
-#productDescription{
-  
+#goToFrontpage {
+  display: block;
+  margin: 20px auto;
 }

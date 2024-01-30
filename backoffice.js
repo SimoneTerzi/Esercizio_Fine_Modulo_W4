@@ -3,6 +3,7 @@ import {
   getProductById,
   addProduct,
   removeProduct,
+  updateProduct,
 } from "./fetch.js";
 
 async function displayProducts() {
@@ -41,6 +42,7 @@ async function displayProducts() {
       displayProducts();
     });
   });
+
   const editButtons = document.querySelectorAll(".edit-product");
   editButtons.forEach((button) => {
     button.addEventListener("click", async () => {
@@ -50,50 +52,65 @@ async function displayProducts() {
   });
 }
 
-displayProducts();
-
 async function createModal(productId) {
   const modalContainer = document.querySelector(".modalContainer");
   const product = await getProductById(productId);
-  modalContainer.innerHTML = "";
-  modalContainer.innerHTML = `<div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
-  aria-labelledby="staticBackdropLabel" aria-hidden="true">
-  <div class="modal-dialog">
-      <div class="modal-content">
-          <div class="modal-header">
-              <h1 class="modal-title fs-5" id="staticBackdropLabel">Modal title</h1>
-              <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-          </div>
-          <div class="modal-body">
-              <h4>Modifica Prodotto</h4>
+  modalContainer.innerHTML = `
+    <div class="modal fade" id="editModal" data-bs-backdrop="static" data-bs-keyboard="false" tabindex="-1"
+      aria-labelledby="staticBackdropLabel" aria-hidden="true">
+      <div class="modal-dialog">
+          <div class="modal-content">
+              <div class="modal-header">
+                  <h1 class="modal-title fs-5" id="staticBackdropLabel">Edit Product</h1>
+                  <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                  <h4>Edit Product</h4>
 
-              Nome del Prodotto: <br>
-              <input type="text" id="productName" name="productName" value="${product.name}"><br>
+                  <label for="editProductName">Product Name:</label><br>
+                  <input type="text" id="editProductName" name="editProductName" value="${product.name}"><br>
 
-              Descrizione del Prodotto: <br>
-              <textarea id="productDescription" name="productDescription">${product.description}</textarea><br>
+                  <label for="editProductDescription">Product Description:</label><br>
+                  <textarea id="editProductDescription" name="editProductDescription">${product.description}</textarea><br>
 
-              Marca del Prodotto: <br>
-              <input type="text" id="productBrand" name="productBrand" value="${product.brand}"><br>
+                  <label for="editProductBrand">Product Brand:</label><br>
+                  <input type="text" id="editProductBrand" name="editProductBrand" value="${product.brand}"><br>
 
-              Prezzo del Prodotto: <br>
-              <input type="number" id="productPrice" name="productPrice" value="${product.price}"><br>
+                  <label for="editProductPrice">Product Price:</label><br>
+                  <input type="number" id="editProductPrice" name="editProductPrice" value="${product.price}"><br>
 
-              URL dell'immagine del Prodotto: <br>
-              <input type="text" id="productImageUrl" name="productImageUrl" value="${product.imageUrl}"><br><br>
-          </div>
-          <div class="modal-footer">
-              <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-              <button type="button" class="btn btn-primary"  data-bs-dismiss="modal">Confirm</button>
+                  <label for="editProductImageUrl">Product Image URL:</label><br>
+                  <input type="text" id="editProductImageUrl" name="editProductImageUrl" value="${product.imageUrl}"><br><br>
+              </div>
+              <div class="modal-footer">
+                  <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                  <button type="button" class="btn btn-primary" id="confirmEdit">Confirm</button>
+              </div>
           </div>
       </div>
-  </div>
-</div>`;
-  const modalfade = document.getElementById("editModal");
-  const myModal = new bootstrap.Modal(modalfade);
-  myModal.show();
-}
+    </div>`;
 
+  const myModal = new bootstrap.Modal(document.getElementById("editModal"), {
+    backdrop: "static",
+    keyboard: false,
+  });
+  myModal.show();
+
+  const confirmButton = document.getElementById("confirmEdit");
+  confirmButton.addEventListener("click", async () => {
+    const updatedProduct = {
+      name: document.getElementById("editProductName").value,
+      description: document.getElementById("editProductDescription").value,
+      brand: document.getElementById("editProductBrand").value,
+      price: parseFloat(document.getElementById("editProductPrice").value),
+      imageUrl: document.getElementById("editProductImageUrl").value,
+    };
+
+    await updateProduct(productId, updatedProduct);
+    displayProducts();
+    myModal.hide();
+  });
+}
 
 document.addEventListener("DOMContentLoaded", () => {
   displayProducts();
@@ -122,3 +139,7 @@ document
     await addProduct(newProduct);
     displayProducts();
   });
+
+document.getElementById("goToFrontpage").addEventListener("click", function () {
+  window.location.href = "frontpage.html";
+});
